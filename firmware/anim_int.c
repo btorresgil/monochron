@@ -63,6 +63,7 @@ uint8_t rows, cols, prevCols;			// DS Number of invader rows and columns
 uint8_t deadInvaderFrame=8;				// DS Dead invader Animation Frame 
 uint8_t bulletFrame=8;				// DS Bullet Animation Frame 
 uint8_t divideByTwo[10] = {0,0,1,1,2,2,3,3,4,4}; //Used instead of division to divide by 2
+uint8_t redrawTime=0;				// Re-draw the time so it doesn't get bullet lines through it
 
 extern volatile uint8_t time_s, time_m, time_h;
 extern volatile uint8_t old_m, old_h;
@@ -138,6 +139,10 @@ void drawdisplay_int(uint8_t inverted) {
      wasalarming=alarming;
     }
     setscore_int(inverted);
+    if (redrawTime > 0) {
+      redrawTime = 0;
+      WriteTime_int(inverted);
+    }
     return;
 }
 
@@ -192,7 +197,7 @@ void WriteInvaders_int(uint8_t inverted) {
   // Draw exploding invader
   if (deadInvaderFrame < 3) {
 	if (deadInvaderFrame < 1) {glcdWriteCharGr(FontGr_INTRUDER_TRIANGLE_UP+(divideByTwo[rows-1])+(Frame*3),inverted);}
-	else {glcdWriteCharGr(FontGr_INTRUDER_CIRCLE_DOWN+deadInvaderFrame,inverted);}
+	else {glcdWriteCharGr(FontGr_INTRUDER_CIRCLE_DOWN+deadInvaderFrame,inverted); redrawTime = 1;}
   }
 
   //Draw gun
