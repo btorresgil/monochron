@@ -147,23 +147,23 @@ void setscore_int(uint8_t inverted) {
    if (! digitsmutex_int) {
     digitsmutex_int++;
     last_score_mode2 = score_mode;
-    left_score = hours(time_h);
-    left_score2 = time_m;
+    right_score = hours(time_h);
+    right_score2 = time_m;
     if (score_mode == SCORE_MODE_ALARM) {
-     right_score = hours(alarm_h);
-     right_score2 = alarm_m;
+     left_score = hours(alarm_h);
+     left_score2 = alarm_m;
     } 
     else if (score_mode == SCORE_MODE_DATE) {
-      right_score = 20;
-      right_score2 = date_y;
+      left_score = 20;
+      left_score2 = date_y;
     } 
     else if (region == REGION_US) {
-     right_score = date_m;
-     right_score2 = date_d;
+     left_score = date_m;
+     left_score2 = date_d;
     } 
     else {
-     right_score = date_d;
-     right_score2 = date_m;
+     left_score = date_d;
+     left_score2 = date_m;
     }
     digitsmutex_int--;
     WriteTime_int(inverted);
