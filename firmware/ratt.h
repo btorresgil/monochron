@@ -43,8 +43,8 @@
 #define SEVENCHRON 1
 #define RATTCHRON 1
 #define TSCHRON 1
-#define DEATHCHRON 1
 #define MARIOCHRON 1
+#define DEATHCHRON 1
 #endif
 
 
@@ -300,6 +300,9 @@ enum {
 #ifdef TSCHRON
 	STYLE_TS,
 #endif
+#ifdef MARIOCHRON
+  STYLE_MARIO,
+#endif
 #ifdef DEATHCHRON
 	STYLE_DEATH,
 #endif
@@ -310,9 +313,6 @@ enum {
 #endif
 #ifdef GPSENABLE
 	STYLE_GPS,
-#endif
-#ifdef MARIOCHRON
-  STYLE_MARIO,
 #endif
 	STYLE_ABOUT
 };
